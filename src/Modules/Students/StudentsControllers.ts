@@ -13,7 +13,11 @@ const crteateStudent=async(req:Request,res:Response)=>{
     })
   }
   catch(err){
-    console.log((err))
+    res.status(500).json({ 
+      sucess:false ,
+      message:"something went wrong ",
+      data:err
+  })
   }
 
 }
