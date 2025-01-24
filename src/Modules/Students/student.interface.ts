@@ -11,7 +11,7 @@
 export type Gurdain = {
   fatherName: string;
   fatherOccupation: string;
-  motheName: string;
+  motherName: string;
   motherOccupation: string;
 };
 

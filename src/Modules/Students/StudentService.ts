@@ -4,8 +4,14 @@ import { StudentMOdel } from "./students.model";
 
 
 // insert student in database
-const insertStudentIntoDb=async(student:Student)=>{
-    const result=await StudentMOdel.create(student);
+const insertStudentIntoDb=async(studentData:Student)=>{
+    //1. const result=await StudentMOdel.create(student); //built in static method 
+
+
+    //2. now here i create a intance method 
+
+    const student =new StudentMOdel(studentData);
+    const result=student.save()
     return result;
 }
 

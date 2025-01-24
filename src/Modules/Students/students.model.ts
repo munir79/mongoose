@@ -36,7 +36,7 @@ export const GurdianShema = new Schema<Gurdain>({
     required:true,
     maxlength:10,
   },
-  motheName:{
+  motherName:{
     type:String,
     required:true
   },
