@@ -3,6 +3,9 @@ import validator from 'validator';
 import {  StudentModel, TGurdain, TLocalGuardian, TStudent,  TUserName,  } from "./student.interface";
 // import { studentModel, TGurdain, TLocalGuardian, TStudent,  TUserName,  } from "./student.interface";
 //
+
+import bycript from 'bcrypt'
+import config from "../../app/config";
 export const UserSchema = new Schema<TUserName>({
   firstName: {
     type: String,
@@ -69,6 +72,11 @@ const studentShema = new Schema<TStudent,StudentModel>({
     required: true,
     unique:true,
   },
+  password: {
+    type: String,
+    required: true,
+    unique:true,
+  },
   name: UserSchema,
   gender:{
     type:String,
@@ -103,6 +111,26 @@ const studentShema = new Schema<TStudent,StudentModel>({
     unique:true
   },
 });
+
+
+//middleware 
+
+//pre save middleware/hook
+studentShema.pre('save', async function(next){
+  // console.log(this ,'pre hook , we will save the data ');
+ //hasing password and save into db 
+ const user=this;
+ user.password= await bycript.hash(user.password,Number(config.bycript_salt));
+ next();
+})
+
+
+//post save middlware/hook 
+
+studentShema.post('save',function(){
+  console.log(this,'post hook : we   saved data ')
+})
+
 
 // creating a custom static method 
 
