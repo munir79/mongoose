@@ -1,8 +1,9 @@
 import { Schema, model } from "mongoose";
 import validator from 'validator';
-import { Gurdain, LocalGuardian, Student, UserName } from "./student.interface";
+import {  StudentModel, TGurdain, TLocalGuardian, TStudent,  TUserName,  } from "./student.interface";
+// import { studentModel, TGurdain, TLocalGuardian, TStudent,  TUserName,  } from "./student.interface";
 //
-export const UserSchema = new Schema<UserName>({
+export const UserSchema = new Schema<TUserName>({
   firstName: {
     type: String,
     required: [true,'First name  is required'],
@@ -25,7 +26,7 @@ export const UserSchema = new Schema<UserName>({
   },
 });
 
-export const GurdianShema = new Schema<Gurdain>({
+export const GurdianShema = new Schema<TGurdain>({
   fatherName: {
     type: String,
     required: true,
@@ -47,7 +48,7 @@ export const GurdianShema = new Schema<Gurdain>({
 });
 
 
-export const  LocalGuradianSchema=new Schema<LocalGuardian>({
+export const  LocalGuradianSchema=new Schema<TLocalGuardian>({
     name:{
         type:String,
         required:true
@@ -62,7 +63,7 @@ export const  LocalGuradianSchema=new Schema<LocalGuardian>({
     }
     
 })
-const studentShema = new Schema<Student>({
+const studentShema = new Schema<TStudent,StudentModel>({
   id: {
     type: String,
     required: true,
@@ -103,6 +104,22 @@ const studentShema = new Schema<Student>({
   },
 });
 
-// now here create a model 
+// creating a custom static method 
 
-export  const StudentMOdel=model<Student>("studentModel",studentShema)
+studentShema.statics.isUSerExists=async function(id:string){
+  const exsistingUSer=await Student.findOne({id});
+  return exsistingUSer;
+}
+
+
+//  for creating  instacne 
+
+
+//  studentShema.methods.isUSerExists=async function(id:string){
+//   const exsistingUser=await Student.findOne({id});
+//   return exsistingUser
+//  }
+
+ // now here create a model 
+// export  const Student=model<TStudent,studentModel>("studentModel",studentShema)
+export  const Student=model<TStudent,StudentModel>("studentModel",studentShema)

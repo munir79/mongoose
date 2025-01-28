@@ -1,5 +1,9 @@
 // import { Schema, model, connect } from "mongoose";
 
+import { Model } from "mongoose";
+
+
+
 
 // step 1: create a interface 
 // step 2: create a schema 
@@ -8,38 +12,56 @@
 
 // be remember carte a schem abased on interface 
 
-export type Gurdain = {
+export type TGurdain = {
   fatherName: string;
   fatherOccupation: string;
   motherName: string;
   motherOccupation: string;
 };
 
-export type UserName = {
+export type TUserName = {
   firstName: string;
   middleName: string;
   lastName: string;
 };
 
-export type LocalGuardian ={
+export type TLocalGuardian ={
     name:string;
     occupation:string;
     contactNumber:string
 }
-export type Student = {
+export type TStudent = {
   id: string;
-  name: UserName;
+  name: TUserName;
 
   gender: "female" | "male";
   contactNumber: string;
   emergencyContactNumber: string;
-  guardian: Gurdain;
+  guardian: TGurdain;
   presentAddress: string;
   permannetAddress: string;
-  localGuardian:LocalGuardian;
+  localGuardian:TLocalGuardian;
   profileImage:string;
   isActive:"active"| "inactive";
 
   email: string;
   avatar?: string;
 };
+
+//for creating statics 
+export interface StudentModel extends Model<TStudent> {
+  isUSerExists(id:string):Promise<TStudent |null>
+}
+
+
+
+
+
+//custom instance 
+
+// export type StudentMethods={
+//   isUSerExists(id:string):Promise<TStudent |null>
+// }
+
+
+// export type studentModel = Model<TStudent, Record <string,never>  , StudentMethods>;

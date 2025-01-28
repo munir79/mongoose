@@ -24,6 +24,7 @@ const crteateStudent=async(req:Request,res:Response)=>{
     const result =await StudentService.insertStudentIntoDb(ZodParseData);
     // const result =await StudentService.insertStudentIntoDb(studentData);
     // console.log("error",error,value)
+    // console.log("result",result);
 
     res.status(200).json({ 
         sucess:true,
@@ -31,10 +32,10 @@ const crteateStudent=async(req:Request,res:Response)=>{
         data:result
     })
   }
-  catch(err){
+  catch(err:any){
     res.status(500).json({ 
       sucess:false ,
-      message:"something went wrong ",
+      message:err.message || "something went wrong ",
       data:err
   })
   }
