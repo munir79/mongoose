@@ -75,7 +75,7 @@ const studentShema = new Schema<TStudent,StudentModel>({
   password: {
     type: String,
     required: true,
-    unique:true,
+   
   },
   name: UserSchema,
   gender:{
@@ -110,25 +110,39 @@ const studentShema = new Schema<TStudent,StudentModel>({
     message:'{VALUE} is not valid you should give proper email',
     unique:true
   },
+  
+  isDeleted:{
+    type:Boolean,
+    default:false
+  }
 });
 
 
-//middleware 
+// documwnt  pre  middleware 
 
 //pre save middleware/hook
 studentShema.pre('save', async function(next){
   // console.log(this ,'pre hook , we will save the data ');
  //hasing password and save into db 
+ // eslint-disable-next-line @typescript-eslint/no-this-alias
  const user=this;
  user.password= await bycript.hash(user.password,Number(config.bycript_salt));
  next();
 })
 
 
-//post save middlware/hook 
+//document  post save middlware/hook 
 
-studentShema.post('save',function(){
+studentShema.post('save',function(doc,next){
+  doc.password='';
   console.log(this,'post hook : we   saved data ')
+  next()
+})
+
+
+// query pre middleware 
+studentShema.pre('find',function(next){
+  // console.log(this);
 })
 
 

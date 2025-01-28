@@ -45,8 +45,12 @@ export type TStudent = {
   profileImage:string;
   isActive:"active"| "inactive";
 
+
+  
+
   email: string;
   avatar?: string;
+  isDeleted: false
 };
 
 //for creating statics 

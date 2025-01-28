@@ -46,7 +46,7 @@ const LocalGuardianSchema = z.object({
 });
 
 // Define the Zod schema for Studenta
-const    StudentZodvalidateSchema = z.object({
+const StudentZodvalidateSchema = z.object({
   id: z.string().nonempty("ID is required"),
   password:z.string().max(20),
   name: UserNameSchema,
@@ -65,11 +65,13 @@ const    StudentZodvalidateSchema = z.object({
   localGuardian: LocalGuardianSchema,
   profileImage: z.string().url("Profile image must be a valid URL"),
   isActive: z.enum(["active", "inactive"]),
+ 
   email: z
     .string()
     .email("Email must be a valid email address")
     .nonempty("Email is required"),
   avatar: z.string().optional(),
+  // isDeleted: z.boolean()
 });
 
 export default   StudentZodvalidateSchema;

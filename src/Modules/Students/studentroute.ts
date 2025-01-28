@@ -13,6 +13,6 @@ router.get('/:studentID',StudentControllers.getASingleStudent)
 
 //delete 
 
-router.delete('/:studentID',)
+router.delete('/:studentID',StudentControllers.deletedStudent)
 
 export const studentsRouters1=router;
