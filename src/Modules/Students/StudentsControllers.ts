@@ -22,6 +22,7 @@ const crteateStudent=async(req:Request,res:Response)=>{
     // const {error,value}=studentJoiVAlidationSchema.validate(studentData);
    
     const result =await StudentService.insertStudentIntoDb(ZodParseData);
+    // const result =await StudentService.insertStudentIntoDb(studentData);
     // console.log("error",error,value)
 
     res.status(200).json({ 

@@ -45,7 +45,7 @@ const LocalGuardianSchema = z.object({
   occupation: z.string().nonempty("Occupation is required"),
 });
 
-// Define the Zod schema for Student
+// Define the Zod schema for Studenta
 const    StudentZodvalidateSchema = z.object({
   id: z.string().nonempty("ID is required"),
   name: UserNameSchema,
