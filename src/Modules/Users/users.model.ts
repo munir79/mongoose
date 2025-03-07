@@ -32,4 +32,4 @@ const UsersSchema=new Schema<TUsers>({
 
 // now create a model
 
-export const USer=model<TUsers>('User',UsersSchema);
+export const User=model<TUsers>('User',UsersSchema);
