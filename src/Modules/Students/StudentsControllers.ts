@@ -24,7 +24,7 @@ const getAllStudents = async (req: Request, res: Response) => {
   }
 };
 
-// get a single student controllers
+// get a single student controller
 
 const getASingleStudent = async (req: Request, res: Response) => {
   try {
