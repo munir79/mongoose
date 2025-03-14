@@ -1,12 +1,13 @@
 import { model, Schema } from "mongoose";
-import { TUsers } from "./users.interface";
+import { Tuser } from "./users.interface";
 
-const UsersSchema=new Schema<TUsers>({
+
+const userSchema=new Schema<Tuser>({
     id:{
         type:String,
         required:true
     },
-    passWord:{
+    password:{
         type:String,
         required:true
     },
@@ -20,16 +21,18 @@ const UsersSchema=new Schema<TUsers>({
     },
     status:{
         type:String,
-        enum:['in-progress','blocekd']
+        enum:['inprogress','blocked'],
+        default:'inprogress'
     },
-    isDeleted:{
-        type:Boolean,
-        default:false
-    }
-},{
-    timestamps:true
-})
+   isDeleted:{
+    type:Boolean,
+    default:false
 
-// now create a model
+   }
+   
+    
+} ,{timestamps:true})
 
-export const User=model<TUsers>('User',UsersSchema);
+export const User=model<Tuser>('User',userSchema)  
+
+//note here modelname is user and User its a database collection

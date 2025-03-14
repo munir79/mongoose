@@ -1,29 +1,35 @@
+import config from "../../app/config";
+import { TStudent } from "../Students/student.interface";
 import { User } from "./users.model";
+import { Tuser } from "./users.interface";
+import { Student } from "../Students/students.model";
+// import { Student } from "../Students/students.model";
 
-// insert student in database
-const insertStudentIntoDb=async(studentData:TStudent)=>{
-    //1. const result=await StudentMOdel.create(student);   //built in static method 
-    
-    // if(await Student.isUSerExists(studentData.id)){
-    //     throw new Error("User Already exsist");
-    // }
-    const result=await User.create(studentData);   //built in static method 
 
-   
-    //2. now here i create a intance method 
+const createStudentIntoDb = async (password:string, studentData: TStudent) => {
 
-    // const student =new Student(studentData);
-     
-    // if(await student.isUSerExists(studentData.id)){
-    //     throw new Error("user already exsist")
-    // }
 
-    // const result=student.save()
-    // return result;
+const userData:Partial<Tuser>={}
+userData.password =password || (config.defaultPassword as string);
+userData.role='student'
+// set manually id
+userData.id='201002050'
+const NewUser = await User.create(userData);
 
-    return result;
-}
+//built in static method
+// create a User 
+if(Object.keys(NewUser).length){
+    studentData.id=NewUser.id;
+    studentData.user=NewUser._id
 
-export const Userservice={
-    insertStudentIntoDb
+    const newStudent=await Student.create(studentData);
+    return newStudent
+  }
+
+};
+
+
+export const USerServices={
+    createStudentIntoDb
+
 }

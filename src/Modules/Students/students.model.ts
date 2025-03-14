@@ -75,7 +75,15 @@ const studentShema = new Schema<TStudent,StudentModel>({
   password: {
     type: String,
     required: true,
+    unique:true,
+    ref:"User"
    
+  },
+  user:{
+   type:Schema.Types.ObjectId,
+   required:[true,'user id is required'],
+   unique:true,
+   ref:"User"
   },
   name: UserSchema,
   gender:{

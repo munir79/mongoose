@@ -1,10 +1,15 @@
 
-
-export type TUsers={
+//create a interface -> reate a model 
+export type Tuser={
     id:string,
-    passWord:string,
+    password:string,
     needPasswordChange:boolean,
-    role:'admin'|'student'|'faculty',
-    status:'in-progress'|'blocekd',
-    isDeleted:boolean
+    status:'inprogress' |'blocked',
+    role:'admin'| 'student'| 'faculty',
+    isDeleted:boolean,
+} 
+ export type NewUser={
+    role:string,
+    password:string
+    id:string
 }

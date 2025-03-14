@@ -4,7 +4,7 @@ import { StudentControllers } from './StudentsControllers';
 
 const router=express.Router();
 //create 
-router.post('/create-student',StudentControllers.crteateStudent);
+// router.post('/create-student',StudentControllers.crteateStudent);
 
 //get 
 router.get('/',StudentControllers.getAllStudents);

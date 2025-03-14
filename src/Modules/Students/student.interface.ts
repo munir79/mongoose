@@ -1,16 +1,10 @@
 // import { Schema, model, connect } from "mongoose";
 
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 
 
 
 
-// step 1: create a interface 
-// step 2: create a schema 
-// step 3: create a model 
-// step 4 : then do db query 
-
-// be remember carte a schem abased on interface 
 
 export type TGurdain = {
   fatherName: string;
@@ -31,9 +25,11 @@ export type TLocalGuardian ={
     contactNumber:string
 }
 export type TStudent = {
+  user:Types.ObjectId,
   id: string;
   password:string;
   name: TUserName;
+  
 
   gender: "female" | "male";
   contactNumber: string;
@@ -43,7 +39,6 @@ export type TStudent = {
   permannetAddress: string;
   localGuardian:TLocalGuardian;
   profileImage:string;
-  isActive:"active"| "inactive";
 
 
   
