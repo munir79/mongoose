@@ -1,8 +1,8 @@
 // import StudentZodvalidateSchema from "../Students/student.validate"
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { USerServices } from "./users.service";
 
-const createStudent = async (req: Request, res: Response) => {
+const createStudent = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const {password,student: studentData } = req.body;
 
@@ -15,12 +15,13 @@ const createStudent = async (req: Request, res: Response) => {
       message: "user created  successfully",
       data: result,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      sucess: false,
-      message: err.message || "something went wrong ",
-      data: err,
-    });
+  } catch (err) {
+    // res.status(500).json({
+    //   sucess: false,
+    //   message: err.message || "something went wrong ",
+    //   data: err,
+    // });
+    next(err)
   }
 };
 
