@@ -4,6 +4,7 @@ import { studentsRouters1 } from './Modules/Students/studentroute'
 import { userRoutes } from './Modules/Users/users.route'
 import globalerrorHandelar1 from './app/middelwares/globalerrorHandelar'
 import notfound from './app/middelwares/notfound'
+import router from './app/routes'
 // import { error } from 'console'
 
 
@@ -14,8 +15,8 @@ const app:Application = express()
 app.use(express.json())
 app.use(cors())
 
-app.use('/api/v1/students',studentsRouters1)
-app.use('/api/v1/users',userRoutes)
+app.use('/api/v1',router)
+// app.use('/api/v1/users',userRoutes)
 
 app.get('/', (req:Request, res:Response) => {
   res.send('Hello World!')
