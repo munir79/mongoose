@@ -46,32 +46,39 @@ const LocalGuardianSchema = z.object({
 });
 
 // Define the Zod schema for Studenta
-const StudentZodvalidateSchema = z.object({
-  id: z.string().nonempty("ID is required"),
-  password:z.string().max(20),
-  name: UserNameSchema,
-  gender: z.enum(["female", "male"],),
-  contactNumber: z
-    .string()
-    .nonempty("Contact number is required")
-    .refine((val) => /^[0-9]+$/.test(val), "Contact number must be numeric"),
-  emergencyContactNumber: z
-    .string()
-    .nonempty("Emergency contact number is required")
-    .refine((val) => /^[0-9]+$/.test(val), "Emergency contact number must be numeric"),
-  guardian: GuardianSchema,
-  presentAddress: z.string().nonempty("Present address is required"),
-  permannetAddress: z.string().nonempty("Permanent address is required"),
-  localGuardian: LocalGuardianSchema,
-  profileImage: z.string().url("Profile image must be a valid URL"),
-  isActive: z.enum(["active", "inactive"]),
- 
-  email: z
-    .string()
-    .email("Email must be a valid email address")
-    .nonempty("Email is required"),
-  avatar: z.string().optional(),
-  // isDeleted: z.boolean()
+const  StudentValidateSchema =z.object({
+  body: z.object({
+    // id: z.string().nonempty("ID is required"),
+    // isDeleted: z.boolean()
+    student:z.object({
+      password:z.string().max(20),
+      name: UserNameSchema,
+      gender: z.enum(["female", "male"],),
+      contactNumber: z
+        .string()
+        .nonempty("Contact number is required")
+        .refine((val) => /^[0-9]+$/.test(val), "Contact number must be numeric"),
+      emergencyContactNumber: z
+        .string()
+        .nonempty("Emergency contact number is required")
+        .refine((val) => /^[0-9]+$/.test(val), "Emergency contact number must be numeric"),
+      guardian: GuardianSchema,
+      presentAddress: z.string().nonempty("Present address is required"),
+      permannetAddress: z.string().nonempty("Permanent address is required"),
+      localGuardian: LocalGuardianSchema,
+      profileImage: z.string().url("Profile image must be a valid URL"),
+      // isActive: z.enum(["active", "inactive"]),
+     
+      email: z
+        .string()
+        .email("Email must be a valid email address")
+        .nonempty("Email is required"),
+      avatar: z.string().optional(),
+  
+    })
+  })
 });
 // add 
-export default   StudentZodvalidateSchema;
+export const StudentValidation={
+  StudentValidateSchema
+};

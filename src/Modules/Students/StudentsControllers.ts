@@ -1,5 +1,6 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { StudentService } from "./StudentService";
+import catchAsync from "../../app/utils/catchAsync";
 // import { promise } from "zod";
 
 // import studentJoiVAlidationSchema from "./students.validate";
@@ -12,33 +13,27 @@ import { StudentService } from "./StudentService";
 
 
 
-const catchAsync=(fn:RequestHandler)=>{
-return(req:Request,res:Response,next:NextFunction)=>{
-  Promise.resolve( fn(req,res,next)).catch(err=>next(err));
-}
-
-}
   
 
 
 
 
-const getAllStudents = async (req: Request, res: Response,next:NextFunction) => {
+const getAllStudents = catchAsync(async (req, res,next) => {
   
-    const result = await StudentService.getAllStudentFroDb();
+  const result = await StudentService.getAllStudentFroDb();
 
-    res.status(200).json({
-      sucess: true,
-      message: "Data Retrive Sucessfully",
-      data: result,
-    });
+  res.status(200).json({
+    sucess: true,
+    message: "Data Retrive Sucessfully",
+    data: result,
+  });
 
-};
+})
 
 // get a single student controller
 
 const getASingleStudent =catchAsync( async (req, res,next) => {
-  try {
+  
     const { studentID } = req.params;
     const result = await StudentService.getASingleStudentFromDb(studentID);
     res.status(200).json({
@@ -46,15 +41,7 @@ const getASingleStudent =catchAsync( async (req, res,next) => {
       messgage: "sucessfully get a single student from db",
       data: result,
     });
-  } catch (err) {
-    // res.status(500).json({
-    //   sucess: false,
-    //   message: err.message || "something went wrong ",
-    //   data: err,
-    // });
-
-    next(err);
-  }
+  
 })
 
 const deletedStudent = async (req: Request, res: Response,next:NextFunction) => {

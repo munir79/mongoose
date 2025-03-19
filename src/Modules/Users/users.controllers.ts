@@ -1,38 +1,24 @@
 // import StudentZodvalidateSchema from "../Students/student.validate"
-import { RequestHandler } from "express";
 import { USerServices } from "./users.service";
 import sendResponse from "../../app/utils/SendResponse";
 import HttpStatus  from "http-status";
+import catchAsync from "../../app/utils/catchAsync";
 
-const createStudent:RequestHandler = async (req, res,next) => {
-  try {
-    const {password,student: studentData } = req.body;
+const createStudent=catchAsync( async (req, res,next) => {
 
-    // const ZodParseData = StudentZodvalidateSchema.parse(studentData);
+  const {password,student: studentData } = req.body;
 
-    const result = await USerServices.createStudentIntoDb(password,studentData);
+  // const ZodParseData = StudentZodvalidateSchema.parse(studentData);
 
-    // res.status(200).json({
-    //   sucess: true,
-    //   message: "user created  successfully",
-    //   data: result,
-    // });
+  const result = await USerServices.createStudentIntoDb(password,studentData);
+  sendResponse(res,{
+    statusCode:HttpStatus.OK,
+    success:true,
+    message:"STUDENT IS CREATED SUCCESSFULLY",
+    data:result
+  })
 
-    sendResponse(res,{
-      statusCode:HttpStatus.OK,
-      success:true,
-      message:"STUDENT IS CREATED SUCCESSFULLY",
-      data:result
-    })
-  } catch (err) {
-    // res.status(500).json({
-    //   sucess: false,
-    //   message: err.message || "something went wrong ",
-    //   data: err,
-    // });
-    next(err)
-  }
-};
+})
 
  
   export const usersControllers={
