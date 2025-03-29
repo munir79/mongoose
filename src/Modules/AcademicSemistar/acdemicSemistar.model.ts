@@ -36,5 +36,24 @@ const academicSemistar=new Schema<TAcademicSemistar>(
     }
 )
 
+
+// middleware is exsist semistar in same year name 
+
+academicSemistar.pre('save', async function(next){
+
+    const isSemistartExsist=await AcademicSemistar.findOne({
+        year:this.year,
+        name:this.name,
+        
+
+    })
+    if(isSemistartExsist){
+        throw new Error('Semistar is Already Esxist this year !!')
+    }
+    next();
+
+})
+
+
 //note here "Academic semistar will be create a singula collection in database and Academic Semistar is Scema name "
  export const AcademicSemistar=model<TAcademicSemistar>("AcademicSemistar",academicSemistar)
