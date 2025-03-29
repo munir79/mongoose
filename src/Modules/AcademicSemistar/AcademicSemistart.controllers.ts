@@ -24,9 +24,9 @@ const createAcademicSemistar=catchAsync( async (req, res) => {
 // end of Create Academic Semisata
 
 
-//start get all Academic Semisatrt 
 
 
+//***********************************start get all Academic Semisatr ***************************************************
 const getAllAcademicSemisatrt=catchAsync(async(req,res)=>{
   const result= await CreateAcademicSemistarService.getAllAcademicSemisTarServiceFromDb();
   sendResponse(res,{
@@ -35,12 +35,33 @@ const getAllAcademicSemisatrt=catchAsync(async(req,res)=>{
     message:"Academic Semistar are retrive sucessfully",
     data:result
   })
+})
 
+
+//********************************* */ end get all Academic Semistar ************************************************
+
+// ---------------------------------------start a single Academsic Semistar-------------------------------
+
+const getASingleAcademicSemistar =catchAsync(async(req,res)=>{
+  const {semistarId}=req.params;
+  const result=await CreateAcademicSemistarService.getSingleSemistarServiceFromDb(semistarId);
+
+  sendResponse(res,{
+    statusCode:HttpStatus.OK,
+    success:true,
+    message:'get a single academic semistar sucessfully',
+    data:result
+  })
 
 })
+
+
+
+
 
  
   export const createAcademicSemistarControllers={
   createAcademicSemistar,
-  getAllAcademicSemisatrt
+  getAllAcademicSemisatrt,
+  getASingleAcademicSemistar
 }

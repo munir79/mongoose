@@ -3,7 +3,7 @@ import { TStudent } from "../Students/student.interface";
 import { User } from "./users.model";
 import { Tuser } from "./users.interface";
 import { Student } from "../Students/students.model";
-import { TAcademicSemistar } from "../AcademicSemistar/academicSemistar.interface";
+// import { TAcademicSemistar } from "../AcademicSemistar/academicSemistar.interface";
 // import { Student } from "../Students/students.model";
 
 

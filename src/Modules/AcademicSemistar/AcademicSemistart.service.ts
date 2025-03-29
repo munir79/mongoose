@@ -18,14 +18,23 @@ const createAcademicSemistarIntoDB=async(payLoad:TAcademicSemistar)=>{
 
 }
 
-
+// ****************************get all AcademicSemistart *************************************
 const getAllAcademicSemisTarServiceFromDb=async()=>{
     const result=await AcademicSemistar.find();
     return result;
 }
 
+//--------------------------------------------getSingleSemistar-------------------------------
+
+const getSingleSemistarServiceFromDb=async(id:string)=>{
+    const result=await AcademicSemistar.findById(id);
+    return result;
+
+}
 
 export const CreateAcademicSemistarService={
     createAcademicSemistarIntoDB,
-    getAllAcademicSemisTarServiceFromDb
+    getSingleSemistarServiceFromDb,
+    getAllAcademicSemisTarServiceFromDb,
+  
 }

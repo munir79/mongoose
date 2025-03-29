@@ -13,6 +13,7 @@ router.post(
   createAcademicSemistarControllers.createAcademicSemistar
 );
 router.get('/',createAcademicSemistarControllers.getAllAcademicSemisatrt);
+router.get('/:semesterId',createAcademicSemistarControllers.getASingleAcademicSemistar);
 
 
 export const AcademicSemistarRoutes = router;
