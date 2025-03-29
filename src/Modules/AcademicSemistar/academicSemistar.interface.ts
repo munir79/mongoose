@@ -12,3 +12,8 @@ export type TAcademicSemistar={
     endMonth:TMonths
 }
 
+export  type TacademisSemistarNameCodeMapper={
+  [key:string]:string;
+}
+
+

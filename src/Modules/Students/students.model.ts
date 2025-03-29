@@ -85,6 +85,12 @@ const studentShema = new Schema<TStudent,StudentModel>({
    unique:true,
    ref:"User"
   },
+
+
+  admissionSemistar:{
+  type:Schema.Types.ObjectId,
+  ref:' AcademicSemistar'
+  },
   name: UserSchema,
   gender:{
     type:String,

@@ -68,6 +68,7 @@ const  StudentValidateSchema =z.object({
       localGuardian: LocalGuardianSchema,
       profileImage: z.string().url("Profile image must be a valid URL"),
       // isActive: z.enum(["active", "inactive"]),
+      admissionSemistar:z.string(),
      
       email: z
         .string()

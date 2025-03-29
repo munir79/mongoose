@@ -1,4 +1,4 @@
-import { TAcademicSemistarCode, TAcademicSemistarName, TMonths } from "./academicSemistar.interface";
+import { TAcademicSemistarCode, TAcademicSemistarName, TacademisSemistarNameCodeMapper, TMonths } from "./academicSemistar.interface";
 
  export const months:TMonths[] = [
     "January", "February", "March", "April", "May", "June", 
@@ -7,3 +7,9 @@ import { TAcademicSemistarCode, TAcademicSemistarName, TMonths } from "./academi
 
   export  const AcademicSemistarName:TAcademicSemistarName[]=["Auttam","Summar","Fall"]
   export const AcademicSemistarCode:TAcademicSemistarCode[]=["01","02","03"]
+
+ export  const AcademicSemistarNameCodeMapper:TacademisSemistarNameCodeMapper ={
+    Auttam:"01",
+    Summar:"02",
+    Fall:"03"
+};

@@ -4,7 +4,7 @@ import HttpStatus  from "http-status";
 import catchAsync from "../../app/utils/catchAsync";
 import { CreateAcademicSemistarService } from "./AcademicSemistart.service";
 
-const createAcademicSemistar=catchAsync( async (req, res,next) => {
+const createAcademicSemistar=catchAsync( async (req, res) => {
 
 //   const {password,student: studentData } = req.body;
 
@@ -14,13 +14,33 @@ const createAcademicSemistar=catchAsync( async (req, res,next) => {
   sendResponse(res,{
     statusCode:HttpStatus.OK,
     success:true,
-    message:"AcademicSemisTar Cretae sucessfully",
+    message:"AcademicSemisTar Create  sucessfully",
     data:result
   })
 
 })
 
+
+// end of Create Academic Semisata
+
+
+//start get all Academic Semisatrt 
+
+
+const getAllAcademicSemisatrt=catchAsync(async(req,res)=>{
+  const result= await CreateAcademicSemistarService.getAllAcademicSemisTarServiceFromDb();
+  sendResponse(res,{
+    statusCode:HttpStatus.OK,
+    success:true,
+    message:"Academic Semistar are retrive sucessfully",
+    data:result
+  })
+
+
+})
+
  
   export const createAcademicSemistarControllers={
-  createAcademicSemistar
+  createAcademicSemistar,
+  getAllAcademicSemisatrt
 }

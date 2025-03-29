@@ -45,7 +45,9 @@ export type TStudent = {
 
   email: string;
   avatar?: string;
-  isDeleted: false
+  isDeleted: false;
+
+  admissionSemistar:Types.ObjectId;
 };
 
 //for creating statics 
