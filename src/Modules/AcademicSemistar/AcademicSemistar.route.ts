@@ -12,8 +12,17 @@ router.post(
   ),
   createAcademicSemistarControllers.createAcademicSemistar
 );
-router.get('/',createAcademicSemistarControllers.getAllAcademicSemisatrt);
-router.get('/:semesterId',createAcademicSemistarControllers.getASingleAcademicSemistar);
-
+router.get("/", createAcademicSemistarControllers.getAllAcademicSemisatrt);
+router.get(
+  "/:semesterId",
+  createAcademicSemistarControllers.getASingleAcademicSemistar
+);
+router.patch(
+  "/:semistarId",
+  validateRequest(
+    AcademicSemoistarValidations.UpdateAcademicSemoistarValidationSchema
+  ),
+  createAcademicSemistarControllers.UpdateAcademicSemistar
+);
 
 export const AcademicSemistarRoutes = router;
