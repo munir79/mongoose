@@ -2,7 +2,6 @@ import express from "express";
 import validateRequest from "../../app/middelwares/ValidateRequest";
 import { AcademicFacultyValidation } from "./AcademicFaculty.validation";
 import { AcademicFacultyControllers } from "./academicFaculty.controllers";
-import { AcademicSemoistarValidations } from "../AcademicSemistar/academicSemistar.validation";
 const router = express.Router();
 
 router.post(
@@ -15,14 +14,14 @@ router.post(
 
 // get a single academic FacultyControllers route
 
-router.get("/:facultyId", AcademicFacultyControllers.getAllAcademicFaculties);
+router.get("/:facultyId", AcademicFacultyControllers.getSingleAcademicFaculty);
 
 // updateAcademicFacultyControllers
 
 router.patch(
-  "/:facultyID",
+  "/:facultyId",
   validateRequest(
-    AcademicSemoistarValidations.UpdateAcademicSemoistarValidationSchema
+   AcademicFacultyValidation.UpdateAcademicFacultyValidationSchema
   ),
   AcademicFacultyControllers.updateAcademicFaculty
 );
