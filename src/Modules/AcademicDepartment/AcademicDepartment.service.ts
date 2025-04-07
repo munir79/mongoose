@@ -6,6 +6,13 @@ import { AcaDemicDepartMent } from "./AcademicDepartment.model";
 // createAcademicDepartmnetIntoDb
 
  const createAcaDemicDepartmentIntoDb=async(payLoad:TAcademicDepartment)=>{
+
+    // cheek already AcademicDepartmnet is exist here or not 
+
+    // const isExistAcademicDepartmnet=await AcaDemicDepartMent.findOne({name:payLoad.name});
+    // if(isExistAcademicDepartmnet){
+    //     throw new Error("Academic Department is Already exist");
+    // }
     const result=await AcaDemicDepartMent.create(payLoad);
   return result;
  }
