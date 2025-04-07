@@ -63,7 +63,7 @@ const updateAcademicDepartmnet=catchAsync(async(req,res)=>{
 })
 
 
-export const AcademicFacultyControllers={
+export const AcademicDepartmentControllers={
     CreateAcademicDepartmnet,getAllAcademicDepartmnet,getASingleAcademicDepartmnet,updateAcademicDepartmnet
 
 }
