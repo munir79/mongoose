@@ -32,7 +32,7 @@ userData.id=await generateStudentId(admissionSemistar);
 
 const NewUser = await User.create(userData);
 
-//built in static method
+//built in static method 
 // create a User 
 if(Object.keys(NewUser).length){
     payload.id=NewUser.id;
