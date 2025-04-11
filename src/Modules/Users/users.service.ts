@@ -19,7 +19,7 @@ userData.role='student'
 // set manually id
 
 
-//year semistar code 4 digit number 
+//year semistar code four  digit number 
 // const genarateStudentId=(payLoad:TAcademicSemistar)
 
 
