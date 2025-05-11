@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 
 export type TName={
 firstName:string,
@@ -21,7 +22,6 @@ export type TlocalGuardian={
 
 export type TStudent={
     id:string,
-    password:string;
     name:TName,
     gender:'male' |'female',
     email:string,
@@ -31,9 +31,9 @@ export type TStudent={
     bloodGroup:'A+' | 'A-',
     presentAddress:string,
     permanentAddress:string,
+    user:Types.ObjectId,
     guardian:Tguardian,
     localGuardian:TlocalGuardian,
     profileImg:string,
-    isActive:'actice'|'in-active'
 
 }

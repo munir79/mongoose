@@ -23,10 +23,15 @@ const LocalGuardianSchema = new Schema({
 
 const StudentSchema = new Schema({
   id: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
   name: { type: NameSchema, required: true },
   gender: { type: String, enum: ['male', 'female'], required: true },
   email: { type: String, required: true, unique: true },
+  user:{
+   type:Schema.Types.ObjectId,
+   required:[true,"user id is required"],
+   unique:true,
+   ref:'User'
+  },
   dateOfBirth: { type: String, required: true },
   constactNumber: { type: String, required: true },
   emergencyContactNumber: { type: String, required: true },
@@ -36,7 +41,6 @@ const StudentSchema = new Schema({
   guardian: { type: GuardianSchema, required: true },
   localGuardian: { type: LocalGuardianSchema, required: true },
   profileImg: { type: String, required: true },
-  isActive: { type: String, enum: ['actice', 'in-active'], required: true }, // Consider fixing "actice" to "active"
 }, {
   timestamps: true,
 });

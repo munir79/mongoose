@@ -22,7 +22,6 @@ export const localGuardianZodSchema = z.object({
 
 export const studentZodSchema = z.object({
   id: z.string(),
-  password: z.string(),
   name: nameZodSchema,
   gender: z.enum(['male', 'female']),
   email: z.string().email(),
@@ -35,7 +34,6 @@ export const studentZodSchema = z.object({
   guardian: guardianZodSchema,
   localGuardian: localGuardianZodSchema,
   profileImg: z.string().url(),
-  isActive: z.enum(['active', 'in-active']), // corrected from 'actice'
 });
 export const StudentValidationSchema={
     studentZodSchema
