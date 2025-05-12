@@ -20,9 +20,10 @@ export const localGuardianZodSchema = z.object({
   address: z.string(),
 });
 
-export const studentZodSchema = z.object({
-  id: z.string(),
-  name: nameZodSchema,
+export const studentZodSchema =z.object({
+  body: z.object({
+ stuent:z.object({
+   name: nameZodSchema,
   gender: z.enum(['male', 'female']),
   email: z.string().email(),
   dateOfBirth: z.string(),
@@ -34,7 +35,9 @@ export const studentZodSchema = z.object({
   guardian: guardianZodSchema,
   localGuardian: localGuardianZodSchema,
   profileImg: z.string().url(),
-});
+ })
+})
+}) ;
 export const StudentValidationSchema={
     studentZodSchema
 }
