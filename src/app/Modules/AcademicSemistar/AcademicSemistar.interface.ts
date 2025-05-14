@@ -1,5 +1,5 @@
 
- export  type Month =
+ export  type TMonth =
   | "January"
   | "February"
   | "March"
@@ -12,12 +12,14 @@
   | "October"
   | "November"
   | "December";
+  export type TAcademicSemistarName='Auttum'|'Summer' |'Fall';
+  export type TacademicSemistarCode='01' |'02' |'03';
 
 export type TAcademicSemistar={
-    name:'Autum'|'Summer'|'Fall',
-    code:'01'|'02'| '03',
+    name:TAcademicSemistarName,
+    code:TacademicSemistarCode,
     year:Date ,
-    startMonth:Month,
-    endMonth:Month
+    startMonth:TMonth,
+    endMonth:TMonth
 
 }
