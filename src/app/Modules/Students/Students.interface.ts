@@ -32,6 +32,7 @@ export type TStudent={
     presentAddress:string,
     permanentAddress:string,
     user:Types.ObjectId,
+    addmissionSemistar:Types.ObjectId,
     guardian:Tguardian,
     localGuardian:TlocalGuardian,
     profileImg:string,

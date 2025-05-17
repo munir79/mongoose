@@ -34,6 +34,7 @@ export const studentZodSchema =z.object({
   permanentAddress: z.string(),
   guardian: guardianZodSchema,
   localGuardian: localGuardianZodSchema,
+  addmissionSemistar:z.string(),
   profileImg: z.string().url(),
  })
 })

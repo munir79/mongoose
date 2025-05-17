@@ -38,6 +38,10 @@ const StudentSchema = new Schema({
   bloodGroup: { type: String, enum: ['A+', 'A-'], required: true },
   presentAddress: { type: String, required: true },
   permanentAddress: { type: String, required: true },
+   addmissionSemistar:{
+    type:Schema.Types.ObjectId,
+    ref:'AcademicSemistarModel'
+   },
   guardian: { type: GuardianSchema, required: true },
   localGuardian: { type: LocalGuardianSchema, required: true },
   profileImg: { type: String, required: true },
