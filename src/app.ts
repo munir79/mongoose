@@ -3,6 +3,7 @@ import cors from 'cors'
 import { UserRouter } from './app/Modules/Users/user.route'
 import globalErrorHandelar from './app/middleware/globalEroorHandelar'
 import notFound from './app/middleware/notfound'
+import { AcademicSemistarRoute } from './app/Modules/AcademicSemistar/AcademicSemistar.route'
 
 // import { error } from 'console'
 
@@ -15,6 +16,9 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/api/v1/users',UserRouter);
+app.use('/api/v1/academic-semistar',AcademicSemistarRoute);
+app.use('/api/v1/singleAcademiocSemiostar',AcademicSemistarRoute);
+app.use ('/api/v1/updateAcademicSemistar',AcademicSemistarRoute);
 app.use(globalErrorHandelar);
 app.use(notFound);
 
