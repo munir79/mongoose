@@ -12,8 +12,8 @@ const CreateAcademicFacultyControllers= catchAsync (async(req,res,next)=>{
   
 
     // *************************************Avoid try catch ********************************************
-     const { student:studentData}=req.body;
-    const result=await FacultyServices.CreateAcademicFacultyIntoDb(studentData);
+     const { faculty:FacultyData}=req.body;
+    const result=await FacultyServices.CreateAcademicFacultyIntoDb(FacultyData);
     sendResponse(res,{statusCode:HttpStatus.OK,
         sucess:true,
         message:"Student created Sucessfully",

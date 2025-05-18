@@ -5,6 +5,7 @@ import globalErrorHandelar from './app/middleware/globalEroorHandelar';
 import notFound from './app/middleware/notfound';
 import { AcademicSemistarRoute } from './app/Modules/AcademicSemistar/AcademicSemistar.route';
 import { AcademicFacultyRoutet } from './app/Modules/AcademicFaculty/AcademicFaculties.route';
+import { AcademicDepartmentRoute } from './app/Modules/Department/AcademicDepartment.route';
 
 // import { error } from 'console'
 
@@ -17,9 +18,10 @@ app.use(cors());
 
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/academic-semistar', AcademicSemistarRoute);
+app.use('/api/v1/faculty', AcademicFacultyRoutet);
+app.use('/api/v1/departmnet', AcademicDepartmentRoute);
 // app.use('/api/v1/singleAcademiocSemiostar',AcademicSemistarRoute);
 // app.use ('/api/v1/updateAcademicSemistar',AcademicSemistarRoute);
-app.use('/api/v1/faculty', AcademicFacultyRoutet);
 app.use(globalErrorHandelar);
 app.use(notFound);
 
