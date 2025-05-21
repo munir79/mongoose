@@ -17,13 +17,13 @@ const CreateAcademicDepartmentIntoDb = async (payLoad: TAcademicDepartmnet) => {
 //                      *  ******************** get all Academic Departmnet   ..................................
 
 const getAllAcademicDepartmnetFromDb = async () => {
-  const result = await AcademicDepartmnetModel.find();
+  const result = await AcademicDepartmnetModel.find().populate('academicfaculty');
   return result;
 };
 
 // get single AcademicDepartmnet
 const getSingleAcademicDepartmnetfromDb = async (id: string) => {
-  const result = await AcademicDepartmnetModel.findById(id);
+  const result = await AcademicDepartmnetModel.findById(id).populate('academicfaculty');
   return result;
 };
 

@@ -1,4 +1,5 @@
 // import { StudentModel } from "../Students/Student.model";
+import mongoose from "mongoose";
 import config from "../../config";
 import { AcademicSemistarModel } from "../AcademicSemistar/Academicsemistar.model";
 import { StudentModel } from "../Students/Student.model";
@@ -6,6 +7,7 @@ import { TStudent } from "../Students/Students.interface";
 import { generatedStudenrId } from "./user.utils";
 import {  Tuser } from "./Users.interface";
 import { User } from "./Users.model";
+import { error } from "console";
 
 
 const createStudentIntoDb=async(password:string ,payLoad:TStudent,)=>{
@@ -26,28 +28,52 @@ const createStudentIntoDb=async(password:string ,payLoad:TStudent,)=>{
 
     UserData.role='student';
     const admissionSemestar=await AcademicSemistarModel.findById(payLoad.addmissionSemistar)
+
     // manually set generated id 
 
-    //year, semistarcode and 4 digit id 
+
+    //*********************************************************** */ transaction and roolback ***********************************************************************************
+    const session =await mongoose.startSession()
+   
+try{
+    session.startTransaction()
+     //year, semistarcode and 4 digit id 
     UserData.id= await generatedStudenrId(admissionSemestar)
    
 
 
 
-    //create a UserData
-    const NewUser=await User.create(UserData);
+    //create a UserData(transaction1)
+    const NewUser=await User.create([UserData],{session});
 
 
     // create a student 
-    if(Object.keys(NewUser).length){
-        // set id , _id as UserData 
-     payLoad.id=NewUser.id;
-     payLoad.user=NewUser._id;
+    if(!NewUser.length){
+      throw new Error("failed to create user")
+     
+    }
+      // set id , _id as UserData 
+     payLoad.id=NewUser[0].id;
+     payLoad.user=NewUser[0]._id;
 
      const newStudent=await StudentModel.create(payLoad);
      return newStudent;
-     
-    }
+
+}
+catch(err){
+
+}
+
+
+
+
+
+
+
+
+
+    // ****************************************************** transaction and roolback end *************************************************************************************
+   
 
 
 
